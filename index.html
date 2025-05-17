@@ -19,8 +19,8 @@
       background: rgba(0, 0, 0, 0.6);
       border-radius: 20px;
       padding: 30px;
-      color: #fff;
-      text-align: center;
+      display: flex;
+      align-items: center;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
     }
 
@@ -30,23 +30,37 @@
       height: 250px;
       border: 10px solid #ccc;
       border-radius: 50%;
-      margin: 0 auto 20px;
       background: #111;
     }
 
     .hand {
       position: absolute;
-      width: 50%;
+      width: 40%;
       height: 4px;
-      background: white;
       top: 50%;
       left: 50%;
       transform-origin: 0% 50%;
-      transform: rotate(90deg);
+      transition: all 0.05s ease-in-out;
     }
 
-    .hand.minute { height: 3px; background: #0f0; }
-    .hand.second { height: 2px; background: #f00; }
+    .hour {
+      background: #aaa;
+      width: 30%;
+      height: 5px;
+    }
+
+    .minute {
+      background: #fff;
+      width: 40%;
+      height: 3px;
+    }
+
+    .second {
+      background: #f00;
+      width: 45%;
+      height: 2px;
+      transition: transform 0.1s linear;
+    }
 
     .number {
       position: absolute;
@@ -62,9 +76,12 @@
     }
 
     .date {
-      font-size: 20px;
-      margin-top: 10px;
-      color: #ddd;
+      color: #fff;
+      font-size: 22px;
+      margin-left: 30px;
+      width: 250px;
+      text-align: left;
+      line-height: 1.4;
     }
   </style>
 </head>
@@ -74,6 +91,7 @@
       <div class="hand hour" id="hourHand"></div>
       <div class="hand minute" id="minuteHand"></div>
       <div class="hand second" id="secondHand"></div>
+
       <!-- Números do relógio -->
       <div class="number" style="transform: translate(-50%, -50%) rotate(30deg) translate(100px) rotate(-30deg);">1</div>
       <div class="number" style="transform: translate(-50%, -50%) rotate(60deg) translate(100px) rotate(-60deg);">2</div>
@@ -88,27 +106,28 @@
       <div class="number" style="transform: translate(-50%, -50%) rotate(330deg) translate(100px) rotate(-330deg);">11</div>
       <div class="number" style="transform: translate(-50%, -50%) rotate(0deg) translate(100px) rotate(0deg);">12</div>
     </div>
-    <div class="date" id="date">--</div>
+    <div class="date" id="date">Carregando...</div>
   </div>
 
   <script>
     function updateClock() {
       const now = new Date();
-      const second = now.getSeconds();
-      const minute = now.getMinutes();
-      const hour = now.getHours();
+      const sec = now.getSeconds();
+      const min = now.getMinutes();
+      const hr = now.getHours();
 
-      const secondDeg = second * 6;
-      const minuteDeg = minute * 6 + second * 0.1;
-      const hourDeg = (hour % 12) * 30 + minute * 0.5;
+      const secDeg = sec * 6;
+      const minDeg = min * 6 + sec * 0.1;
+      const hrDeg = (hr % 12) * 30 + min * 0.5;
 
-      document.getElementById("secondHand").style.transform = `rotate(${secondDeg}deg)`;
-      document.getElementById("minuteHand").style.transform = `rotate(${minuteDeg}deg)`;
-      document.getElementById("hourHand").style.transform = `rotate(${hourDeg}deg)`;
+      document.getElementById("secondHand").style.transform = `rotate(${secDeg}deg)`;
+      document.getElementById("minuteHand").style.transform = `rotate(${minDeg}deg)`;
+      document.getElementById("hourHand").style.transform = `rotate(${hrDeg}deg)`;
 
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const dateStr = now.toLocaleDateString('pt-BR', options);
-      document.getElementById("date").textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+      let dateStr = now.toLocaleDateString('pt-BR', options);
+      dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+      document.getElementById("date").textContent = dateStr;
     }
 
     setInterval(updateClock, 1000);

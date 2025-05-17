@@ -7,104 +7,105 @@
     html, body {
       margin: 0;
       padding: 0;
+      background: transparent;
       height: 100%;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      width: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: sans-serif;
     }
 
-    .box {
-      background: rgba(0, 0, 0, 0.6);
+    .container {
+      background: rgba(0, 0, 0, 0.4); /* preto com transparência */
       border-radius: 20px;
-      padding: 30px;
+      padding: 2vh 4vw;
       display: flex;
       align-items: center;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      gap: 5vw;
+      box-shadow: 0 0 10px #000;
     }
 
     .clock {
       position: relative;
-      width: 250px;
-      height: 250px;
-      border: 10px solid #ccc;
+      width: 30vh;
+      height: 30vh;
+      border: 0.8vh solid #aaa;
       border-radius: 50%;
       background: #111;
     }
 
     .hand {
       position: absolute;
-      width: 40%;
-      height: 4px;
       top: 50%;
       left: 50%;
-      transform-origin: 0% 50%;
-      transition: all 0.05s ease-in-out;
+      transform-origin: left;
+      transform: rotate(90deg);
     }
 
     .hour {
-      background: #aaa;
-      width: 30%;
-      height: 5px;
+      width: 25%;
+      height: 0.6vh;
+      background: #888;
     }
 
     .minute {
+      width: 35%;
+      height: 0.4vh;
       background: #fff;
-      width: 40%;
-      height: 3px;
     }
 
     .second {
-      background: #f00;
-      width: 45%;
-      height: 2px;
+      width: 40%;
+      height: 0.2vh;
+      background: red;
       transition: transform 0.1s linear;
     }
 
     .number {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      text-align: center;
+      width: 10%;
+      height: 10%;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       color: #fff;
-      font-size: 18px;
+      font-size: 2.5vh;
       font-weight: bold;
+      text-align: center;
+      transform: translate(-50%, -50%);
     }
 
     .date {
-      color: #fff;
-      font-size: 22px;
-      margin-left: 30px;
-      width: 250px;
+      color: white;
+      font-size: 3vh;
+      font-weight: 900;
+      max-width: 30vw;
       text-align: left;
       line-height: 1.4;
     }
   </style>
 </head>
 <body>
-  <div class="box">
+  <div class="container">
     <div class="clock">
       <div class="hand hour" id="hourHand"></div>
       <div class="hand minute" id="minuteHand"></div>
       <div class="hand second" id="secondHand"></div>
 
       <!-- Números do relógio -->
-      <div class="number" style="transform: translate(-50%, -50%) rotate(30deg) translate(100px) rotate(-30deg);">1</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(60deg) translate(100px) rotate(-60deg);">2</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(90deg) translate(100px) rotate(-90deg);">3</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(120deg) translate(100px) rotate(-120deg);">4</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(150deg) translate(100px) rotate(-150deg);">5</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(180deg) translate(100px) rotate(-180deg);">6</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(210deg) translate(100px) rotate(-210deg);">7</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(240deg) translate(100px) rotate(-240deg);">8</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(270deg) translate(100px) rotate(-270deg);">9</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(300deg) translate(100px) rotate(-300deg);">10</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(330deg) translate(100px) rotate(-330deg);">11</div>
-      <div class="number" style="transform: translate(-50%, -50%) rotate(0deg) translate(100px) rotate(0deg);">12</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(30deg) translate(12.5vh) rotate(-30deg);">1</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(60deg) translate(12.5vh) rotate(-60deg);">2</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(90deg) translate(12.5vh) rotate(-90deg);">3</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(120deg) translate(12.5vh) rotate(-120deg);">4</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(150deg) translate(12.5vh) rotate(-150deg);">5</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(180deg) translate(12.5vh) rotate(-180deg);">6</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(210deg) translate(12.5vh) rotate(-210deg);">7</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(240deg) translate(12.5vh) rotate(-240deg);">8</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(270deg) translate(12.5vh) rotate(-270deg);">9</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(300deg) translate(12.5vh) rotate(-300deg);">10</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(330deg) translate(12.5vh) rotate(-330deg);">11</div>
+      <div class="number" style="transform: translate(-50%, -50%) rotate(0deg) translate(12.5vh) rotate(0deg);">12</div>
     </div>
     <div class="date" id="date">Carregando...</div>
   </div>
